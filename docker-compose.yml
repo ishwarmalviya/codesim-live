@@ -1,0 +1,109 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: codesim
+      POSTGRES_USER: codesim_app
+      POSTGRES_PASSWORD: codesim_dev_pw
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codesim_app -d codesim"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  judge0-db:
+    image: postgres:16.2-alpine
+    environment:
+      POSTGRES_DB: judge0
+      POSTGRES_USER: judge0
+      POSTGRES_PASSWORD: judge0_pg_dev_pw
+    volumes:
+      - judge0_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U judge0 -d judge0"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  judge0-redis:
+    image: redis:7.2-alpine
+    command: redis-server --requirepass judge0_redis_dev_pw --appendonly no
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "judge0_redis_dev_pw", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  judge0-server:
+    # Official 1.13.1 isolate needs cgroup v1; this build works on Docker Desktop (cgroup v2).
+    image: mrkushalsm/judge0:latest
+    volumes:
+      - ./judge0/judge0.conf:/judge0.conf:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    ports:
+      - "2358:2358"
+    privileged: true
+    cgroup: host
+    depends_on:
+      judge0-db:
+        condition: service_healthy
+      judge0-redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:2358/about >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+  judge0-workers:
+    image: mrkushalsm/judge0:latest
+    command: ["./scripts/workers"]
+    volumes:
+      - ./judge0/judge0.conf:/judge0.conf:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    privileged: true
+    cgroup: host
+    depends_on:
+      judge0-server:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backend:
+    build: ./codesim-backend
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: codesim
+      DB_USER: codesim_app
+      DB_PASSWORD: codesim_dev_pw
+      JWT_SECRET: ${JWT_SECRET:-dev-only-change-me-codesim-jwt-secret-key-2026-final-year-project}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      FRONTEND_ORIGIN: http://localhost:5173
+      JUDGE0_API_URL: http://judge0-server:2358
+      JUDGE0_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      judge0-server:
+        condition: service_healthy
+
+  frontend:
+    build: ./codesim-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  judge0_pgdata:

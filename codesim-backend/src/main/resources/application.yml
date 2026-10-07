@@ -1,0 +1,40 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: codesim-backend
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:codesim}${DB_URL_PARAMS:}
+    username: ${DB_USER:codesim_app}
+    password: ${DB_PASSWORD:codesim_dev_pw}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-change-me-codesim-jwt-secret-key-2026-final-year-project}
+    access-token-expiry-minutes: 60
+    refresh-token-expiry-days: 14
+  cors:
+    allowed-origins: ${FRONTEND_ORIGIN:http://localhost:5173}
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    model: gpt-4o
+  code-execution:
+    python-bin: ${PYTHON_BIN:python3}
+    timeout-seconds: 10
+    max-code-length: 10000
+  judge0:
+    api-url: ${JUDGE0_API_URL:http://localhost:2358}
+    enabled: ${JUDGE0_ENABLED:true}
+    auth-token: ${JUDGE0_AUTH_TOKEN:}
+    auth-header: ${JUDGE0_AUTH_HEADER:X-Auth-Token}

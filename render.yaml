@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: codesim-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./codesim-backend/Dockerfile
+    dockerContext: ./codesim-backend
+    healthCheckPath: /api/public/stats
+    envVars:
+      - key: JUDGE0_ENABLED
+        value: "false"
+      - key: DB_URL_PARAMS
+        value: "?sslmode=require"
+      - key: DB_PORT
+        value: "5432"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:MaxRAMPercentage=70.0 -XX:+UseSerialGC"
+      - key: DB_HOST
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

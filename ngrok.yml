@@ -1,0 +1,8 @@
+version: "3"
+
+tunnels:
+  codesim:
+    addr: 5173
+    proto: http
+    schemes:
+      - https

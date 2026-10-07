@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://start.spring.io/starter.zip --data-urlencode type=maven-project --data-urlencode language=java --data-urlencode bootVersion=3.3.4 --data-urlencode baseDir=codesim-backend --data-urlencode groupId=com.codesim --data-urlencode artifactId=codesim-backend --data-urlencode name=codesim-backend --data-urlencode packageName=com.codesim --data-urlencode javaVersion=17 --data-urlencode dependencies=web,data-jpa,postgresql,security,validation,flyway,mail -o backend.zip)",
+      "Bash(unzip -t backend.zip)",
+      "Bash(curl -s https://start.spring.io/starter.zip --data-urlencode type=maven-project --data-urlencode language=java --data-urlencode bootVersion=3.5.0 --data-urlencode baseDir=codesim-backend --data-urlencode groupId=com.codesim --data-urlencode artifactId=codesim-backend --data-urlencode name=codesim-backend --data-urlencode packageName=com.codesim --data-urlencode javaVersion=17 --data-urlencode dependencies=web,data-jpa,postgresql,security,validation,flyway,mail -o backend.zip)",
+      "Bash(unzip -q backend.zip)",
+      "Bash(rm backend.zip)"
+    ]
+  }
+}

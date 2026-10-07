@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Google",
+    "logoEmoji": "🔍",
+    "difficultyThreshold": 1650,
+    "tags": "FAANG,product",
+    "requiredTopics": { "Dynamic Programming": 0.9, "Graphs": 0.85, "Trees": 0.8, "Arrays": 0.6, "Recursion": 0.6 }
+  },
+  {
+    "name": "Meta",
+    "logoEmoji": "📘",
+    "difficultyThreshold": 1600,
+    "tags": "FAANG,product",
+    "requiredTopics": { "Graphs": 0.85, "Dynamic Programming": 0.8, "Arrays": 0.7, "Hashing": 0.6, "Trees": 0.6 }
+  },
+  {
+    "name": "Amazon",
+    "logoEmoji": "📦",
+    "difficultyThreshold": 1500,
+    "tags": "FAANG,product",
+    "requiredTopics": { "Arrays": 0.8, "Trees": 0.7, "Strings": 0.6, "Sorting": 0.6, "Hashing": 0.5 }
+  },
+  {
+    "name": "Microsoft",
+    "logoEmoji": "🪟",
+    "difficultyThreshold": 1450,
+    "tags": "product,enterprise",
+    "requiredTopics": { "Trees": 0.75, "Dynamic Programming": 0.65, "Strings": 0.6, "Linked Lists": 0.6, "Arrays": 0.5 }
+  },
+  {
+    "name": "Apple",
+    "logoEmoji": "🍎",
+    "difficultyThreshold": 1550,
+    "tags": "FAANG,product",
+    "requiredTopics": { "Arrays": 0.7, "Trees": 0.65, "Recursion": 0.6, "Sorting": 0.5, "Strings": 0.5 }
+  },
+  {
+    "name": "Netflix",
+    "logoEmoji": "🎬",
+    "difficultyThreshold": 1600,
+    "tags": "product,streaming",
+    "requiredTopics": { "Graphs": 0.7, "Dynamic Programming": 0.7, "Hashing": 0.6, "Arrays": 0.6 }
+  },
+  {
+    "name": "Uber",
+    "logoEmoji": "🚗",
+    "difficultyThreshold": 1500,
+    "tags": "product,mobility",
+    "requiredTopics": { "Graphs": 0.8, "Arrays": 0.6, "Hashing": 0.6, "Sorting": 0.5, "Binary Search": 0.5 }
+  },
+  {
+    "name": "Flipkart",
+    "logoEmoji": "🛒",
+    "difficultyThreshold": 1350,
+    "tags": "product,ecommerce,india",
+    "requiredTopics": { "Arrays": 0.7, "Strings": 0.6, "Trees": 0.5, "Sorting": 0.5, "Hashing": 0.5 }
+  },
+  {
+    "name": "Adobe",
+    "logoEmoji": "🎨",
+    "difficultyThreshold": 1400,
+    "tags": "product",
+    "requiredTopics": { "Arrays": 0.6, "Dynamic Programming": 0.6, "Strings": 0.5, "Trees": 0.5 }
+  },
+  {
+    "name": "Goldman Sachs",
+    "logoEmoji": "🏦",
+    "difficultyThreshold": 1450,
+    "tags": "finance,quant",
+    "requiredTopics": { "Arrays": 0.7, "Dynamic Programming": 0.6, "Sorting": 0.6, "Binary Search": 0.5, "Recursion": 0.5 }
+  },
+  {
+    "name": "Infosys",
+    "logoEmoji": "💼",
+    "difficultyThreshold": 1000,
+    "tags": "service,india",
+    "requiredTopics": { "Arrays": 0.6, "Strings": 0.6, "Sorting": 0.5, "Linked Lists": 0.4 }
+  },
+  {
+    "name": "TCS",
+    "logoEmoji": "💻",
+    "difficultyThreshold": 950,
+    "tags": "service,india",
+    "requiredTopics": { "Arrays": 0.5, "Strings": 0.5, "Sorting": 0.5, "Hashing": 0.4 }
+  },
+  {
+    "name": "Wipro",
+    "logoEmoji": "🖥️",
+    "difficultyThreshold": 950,
+    "tags": "service,india",
+    "requiredTopics": { "Arrays": 0.5, "Strings": 0.5, "Linked Lists": 0.4, "Sorting": 0.4 }
+  },
+  {
+    "name": "Zoho",
+    "logoEmoji": "📊",
+    "difficultyThreshold": 1200,
+    "tags": "product,india",
+    "requiredTopics": { "Arrays": 0.6, "Strings": 0.6, "Trees": 0.5, "Recursion": 0.5 }
+  },
+  {
+    "name": "Atlassian",
+    "logoEmoji": "🔷",
+    "difficultyThreshold": 1500,
+    "tags": "product",
+    "requiredTopics": { "Graphs": 0.7, "Trees": 0.65, "Dynamic Programming": 0.6, "Arrays": 0.5 }
+  }
+]
